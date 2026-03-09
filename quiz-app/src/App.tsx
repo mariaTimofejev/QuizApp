@@ -8,12 +8,14 @@ function App() {
   const [answers, setAnswers] = useState<number[]>([]);
   const [finished, setFinished] = useState(false);
   const [feedback, setFeedback] = useState("");
+  const [color, setColor] = useState("");
 
   const restartQuiz = () => {
     setCurrentIndex(0);
     setAnswers([]);
     setFinished(false);
     setFeedback("");
+    setColor("");
   };
 
   const handleAnswer = (index: number) => {
@@ -21,15 +23,26 @@ function App() {
 
     if (index === correct) {
       setFeedback("Õige vastus!");
-    } else {
+      setColor("green");
+      } else {
       setFeedback("Vale vastus!");
-    }
+      setColor("red");
+      }
 
+        {feedback && (
+      <p
+        data-testid="feedback"
+        style={{ color: color, fontWeight: "bold" }}
+      >
+        {feedback}
+      </p>
+    )}
     const newAnswers = [...answers, index];
     setAnswers(newAnswers);
 
     setTimeout(() => {
       setFeedback("");
+      setColor("");
 
       if (currentIndex + 1 < questions.length) {
         setCurrentIndex(currentIndex + 1);
