@@ -56,15 +56,24 @@ function App() {
     <div className="app">
       <h1>Viktoriin</h1>
 
-      {!finished ? (
-        <>
-          <QuestionCard
-            question={questions[currentIndex]}
-            onAnswer={handleAnswer}
-          />
+     {!finished ? (
+  <>
+    <p>
+      Küsimus {currentIndex + 1} / {questions.length}
+    </p>
 
-          {feedback && <p data-testid="feedback">{feedback}</p>}
-        </>
+    <progress
+      value={currentIndex + 1}
+      max={questions.length}
+    />
+
+    <QuestionCard
+      question={questions[currentIndex]}
+      onAnswer={handleAnswer}
+    />
+
+    {feedback && <p data-testid="feedback">{feedback}</p>}
+  </>
       ) : (
         <>
           <h2>Skoor: {score} / {questions.length}</h2>
