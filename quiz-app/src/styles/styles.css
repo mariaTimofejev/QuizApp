@@ -31,3 +31,11 @@ progress {
   height: 20px;
   margin-bottom: 20px;
 }
+
+.option-button:hover {
+  background: #005fa3;
+}
+
+button {
+  cursor: pointer;
+}
