@@ -24,32 +24,24 @@ function App() {
     if (index === correct) {
       setFeedback("Õige vastus!");
       setColor("green");
-      } else {
+    } else {
       setFeedback("Vale vastus!");
       setColor("red");
-      }
+    }
 
-        {feedback && (
-      <p
-        data-testid="feedback"
-        style={{ color: color, fontWeight: "bold" }}
-      >
-        {feedback}
-      </p>
-    )}
     const newAnswers = [...answers, index];
     setAnswers(newAnswers);
+  };
 
-    setTimeout(() => {
-      setFeedback("");
-      setColor("");
+  const goToNext = () => {
+    setFeedback("");
+    setColor("");
 
-      if (currentIndex + 1 < questions.length) {
-        setCurrentIndex(currentIndex + 1);
-      } else {
-        setFinished(true);
-      }
-    }, 1000);
+    if (currentIndex + 1 < questions.length) {
+      setCurrentIndex(currentIndex + 1);
+    } else {
+      setFinished(true);
+    }
   };
 
   const results = questions.map((q, i) => {
@@ -69,33 +61,37 @@ function App() {
     <div className="app">
       <h1>Viktoriin</h1>
 
-     {!finished ? (
-  <>
-    <p>
-      Küsimus {currentIndex + 1} / {questions.length}
-    </p>
+      {!finished ? (
+        <>
+          <p>
+            Küsimus {currentIndex + 1} / {questions.length}
+          </p>
 
-    <progress
-      value={currentIndex + 1}
-      max={questions.length}
-    />
+          <progress value={currentIndex + 1} max={questions.length} />
 
-    <QuestionCard
-      question={questions[currentIndex]}
-      onAnswer={handleAnswer}
-    />
+          <QuestionCard
+            question={questions[currentIndex]}
+            onAnswer={handleAnswer}
+          />
 
-    {feedback && <p data-testid="feedback">{feedback}</p>}
-  </>
+          {feedback && (
+            <>
+              <p data-testid="feedback" style={{ color, fontWeight: "bold" }}>
+                {feedback}
+              </p>
+              <button data-testid="next" onClick={goToNext}>
+                Järgmine
+              </button>
+            </>
+          )}
+        </>
       ) : (
         <>
           <h2>Skoor: {score} / {questions.length}</h2>
 
           <ResultTable results={results} />
 
-          <button onClick={restartQuiz}>
-            Alusta uuesti
-          </button>
+          <button onClick={restartQuiz}>Alusta uuesti</button>
         </>
       )}
     </div>
