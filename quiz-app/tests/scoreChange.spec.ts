@@ -3,17 +3,12 @@ import { test, expect } from "@playwright/test";
 test("punktisumma arvutatakse viktoriini lõpus", async ({ page }) => {
   await page.goto("http://localhost:5173");
 
-  while (true) {
+  const questionCount = await page.locator("progress").getAttribute("max");
+
+  for (let i = 0; i < Number(questionCount); i++) {
     await page.locator("button").first().click();
-
-    const nextButton = page.getByTestId("next");
-
-    if (await nextButton.isVisible()) {
-      await nextButton.click();
-    } else {
-      break;
-    }
+    await page.getByTestId("next").click();
   }
 
-  await expect(page.getByText("Skoor:")).toBeVisible();
+  await expect(page.getByText(/Skoor:/)).toBeVisible();
 });
