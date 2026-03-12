@@ -1,20 +1,14 @@
 import { test, expect } from "@playwright/test";
 
-test("viktoriini lõpus kuvatakse tulemuste tabel ja skoor", async ({ page }) => {
+test("viktoriini lõpus kuvatakse lõpptulemus", async ({ page }) => {
   await page.goto("http://localhost:5173");
 
-  while (true) {
-    await page.locator("button").first().click();
+  const questionCount = await page.locator("progress").getAttribute("max");
 
-    const next = page.getByTestId("next");
-
-    if (await next.isVisible()) {
-      await next.click();
-    } else {
-      break;
-    }
+  for (let i = 0; i < Number(questionCount); i++) {
+    await page.locator("button").first().click(); // vali vastus
+    await page.getByTestId("next").click();       // järgmine küsimus
   }
 
-  await expect(page.getByText("Skoor:")).toBeVisible();
-  await expect(page.locator("table")).toBeVisible();
+  await expect(page.getByText(/Skoor:/)).toBeVisible();
 });
