@@ -91,7 +91,9 @@ function App() {
 
           <ResultTable results={results} />
 
-          <button onClick={restartQuiz}>Alusta uuesti</button>
+          <button className="restart-btn" onClick={restartQuiz}>
+            Alusta uuesti
+          </button>
         </>
       )}
     </div>
