@@ -21,11 +21,7 @@ export const questions: Question[] = [
   {
     id: 3,
     question: "Mis loom on Eesti rahvusloom?",
-    options: [
-      "Karu",
-      "Rebane",
-      "Hunt",
-    ],
+    options: ["Karu", "Rebane", "Hunt"],
     correctIndex: 2,
   },
   {
