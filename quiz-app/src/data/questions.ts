@@ -20,12 +20,24 @@ export const questions: Question[] = [
   },
   {
     id: 3,
-    question: "Mis on Statistikaameti põhiülesanne?",
+    question: "Mis loom on Eesti rahvusloom?",
     options: [
-      "Maksude kogumine",
-      "Statistiliste andmete kogumine ja avaldamine",
-      "Kohtulahendite tegemine",
+      "Karu",
+      "Rebane",
+      "Hunt",
     ],
-    correctIndex: 1,
+    correctIndex: 2,
   },
+  {
+    id: 4,
+    question: "Milline meri piirab Eestit?",
+    options: ["Vahemeri", "Must meri", "Läänemeri"],
+    correctIndex: 2,
+  },
+  {
+    id: 5,
+    question: "Kes on Eesti rahvuseepose „Kalevipoeg” autor?",
+    options: ["Lydia Koidula", "Friedrich Reinhold Kreutzwald", "Anton Hansen Tammsaare"],
+    correctIndex: 1,
+  }
 ];
