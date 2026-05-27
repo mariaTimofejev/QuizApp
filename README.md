@@ -5,7 +5,7 @@ Installation
 
 Clone the repository:
 
-git clone https://github.com/your-username/quiz-app.git
+git clone 
 cd quiz-app
 
 Install dependencies:
